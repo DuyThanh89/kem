@@ -9,6 +9,12 @@ function generateQuestions() {
   container.innerHTML = ""
   questions = []
 
+  const clearWrongBtn = document.getElementById("clear-wrong-btn")
+  if (clearWrongBtn) clearWrongBtn.classList.add('hidden')
+  
+  const resultEl = document.getElementById("result")
+  if (resultEl) resultEl.innerHTML = ""
+
   const formatNum = (num) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
   for (let i = 0; i < 12; i++) {
@@ -98,6 +104,35 @@ function checkAnswers() {
 
     resultEl.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
+
+  const clearWrongBtn = document.getElementById("clear-wrong-btn")
+  if (clearWrongBtn) {
+    if (score < 12) {
+      clearWrongBtn.classList.remove('hidden')
+    } else {
+      clearWrongBtn.classList.add('hidden')
+    }
+  }
+}
+
+function clearWrongAnswers() {
+  questions.forEach((q, index) => {
+    const inputEl = document.getElementById("q" + index)
+    if (Number(inputEl.value) !== q.answer) {
+      inputEl.value = ""
+      inputEl.classList.remove('ring-2', 'ring-red-500', 'ring-emerald-500')
+      inputEl.classList.add('focus:ring-blue-500')
+    }
+  })
+
+  // Hide the result message and ourselves
+  const resultEl = document.getElementById("result")
+  if (resultEl) resultEl.innerHTML = ""
+  
+  const clearWrongBtn = document.getElementById("clear-wrong-btn")
+  if (clearWrongBtn) clearWrongBtn.classList.add('hidden')
+
+  checkInputs()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -112,5 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (completeBtn) {
     completeBtn.addEventListener('click', checkAnswers)
     checkInputs() // Initial check
+  }
+
+  const clearWrongBtn = document.getElementById("clear-wrong-btn")
+  if (clearWrongBtn) {
+    clearWrongBtn.addEventListener('click', clearWrongAnswers)
+  }
+
+  const newGameBtn = document.getElementById("new-game-btn")
+  if (newGameBtn) {
+    newGameBtn.addEventListener('click', () => {
+      generateQuestions()
+      checkInputs()
+    })
   }
 })
