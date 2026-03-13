@@ -1,1 +1,89 @@
-hello
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài tập toán</title>
+<style>
+body{
+  font-family: Arial;
+  max-width: 600px;
+  margin: auto;
+}
+.question{
+  margin:10px 0;
+}
+input{
+  width:120px;
+}
+#result{
+  font-size:20px;
+  margin-top:20px;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Bài tập toán</h2>
+
+<div id="questions"></div>
+
+<button onclick="checkAnswers()">Hoàn thành</button>
+
+<div id="result"></div>
+
+<script>
+
+let questions = []
+
+function generateQuestions(){
+  const container = document.getElementById("questions")
+
+  for(let i=0;i<10;i++){
+
+    let a = Math.floor(Math.random()*100000)
+    let b = Math.floor(Math.random()*100000)
+
+    questions.push({
+      a:a,
+      b:b,
+      answer:a+b
+    })
+
+    const div = document.createElement("div")
+    div.className="question"
+
+    div.innerHTML = `
+      ${a} + ${b} =
+      <input type="number" id="q${i}">
+    `
+
+    container.appendChild(div)
+  }
+}
+
+function checkAnswers(){
+
+  let score = 0
+
+  questions.forEach((q,index)=>{
+
+    const input = document.getElementById("q"+index).value
+
+    if(Number(input) === q.answer){
+      score++
+    }
+
+  })
+
+  document.getElementById("result").innerHTML =
+    "Điểm của bạn: " + score + " / 10"
+}
+
+generateQuestions()
+
+</script>
+
+</body>
+</html>
