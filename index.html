@@ -1,93 +1,40 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-<meta charset="UTF-8">
-<title>Bài tập toán</title>
-<style>
-body{
-  font-family: Arial;
-  font-size:20px;
-  max-width: 600px;
-  margin: auto;
-}
-.question{
-  margin:10px 0;
-}
-input{
-  width:120px;
-}
-button {
-  padding:10px;
-}
-#result{
-  font-size:20px;
-  margin-top:20px;
-  font-weight:bold;
-}
-</style>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài tập toán - Thử thách tính toán</title>
+  </head>
+  <body class="bg-slate-50 text-slate-900 m-0 py-10 px-5 flex justify-center">
+    <div id="app" class="max-w-7xl w-full">
+      <header class="text-center mb-12">
+        <div class="bg-linear-to-br from-indigo-500 to-indigo-600 w-15 h-15 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-indigo-500/40">
+          <svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-3-3V1.5m-3 14.25V18m-3-3V1.5M3 21h18M3 7.5h18M3 12h18" />
+            <rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor"/>
+            <path d="M7 6h10M7 10h10M7 14h10M7 18h10" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold mb-2.5 text-slate-800">Bài Tập Toán</h1>
+        <p class="text-slate-500 text-base">Thử thách khả năng tính toán của bạn với 12 phép cộng ngẫu nhiên.</p>
+      </header>
 
-<body>
+      <main>
+        <div id="questions" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-15"></div>
+        
+        <div class="flex justify-center">
+          <button id="complete-btn" class="bg-slate-900 text-white border-none rounded-2xl px-8 py-4 text-lg font-semibold cursor-pointer flex items-center gap-3 shadow-xl shadow-slate-900/30 transition-all hover:bg-slate-800 hover:scale-105 active:scale-95">
+            Hoàn thành
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
 
-<h2>Bài tập toán</h2>
-
-<div id="questions"></div>
-
-<button onclick="checkAnswers()">Hoàn thành</button>
-
-<div id="result"></div>
-
-<script>
-
-let questions = []
-
-function generateQuestions(){
-  const container = document.getElementById("questions")
-
-  for(let i=0;i<10;i++){
-
-    let a = Math.floor(Math.random()*100000)
-    let b = Math.floor(Math.random()*100000)
-
-    questions.push({
-      a:a,
-      b:b,
-      answer:a+b
-    })
-
-    const div = document.createElement("div")
-    div.className="question"
-
-    div.innerHTML = `
-      ${a} + ${b} =
-      <input type="number" id="q${i}">
-    `
-
-    container.appendChild(div)
-  }
-}
-
-function checkAnswers(){
-
-  let score = 0
-
-  questions.forEach((q,index)=>{
-
-    const input = document.getElementById("q"+index).value
-
-    if(Number(input) === q.answer){
-      score++
-    }
-
-  })
-
-  document.getElementById("result").innerHTML =
-    "Điểm của bạn: " + score + " / 10"
-}
-
-generateQuestions()
-
-</script>
-
-</body>
+        <div id="result" class="mt-8 text-center text-2xl font-bold"></div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
