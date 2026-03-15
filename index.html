@@ -1,80 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
-
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bài tập toán - Thử thách tính toán</title>
-  <script type="module" crossorigin src="/kem/assets/index-DI18z_Em.js"></script>
-  <link rel="stylesheet" crossorigin href="/kem/assets/index-102UgF04.css">
-</head>
-
-<body class="bg-slate-50 text-slate-900 m-0 py-10 px-5 flex justify-center">
-  <div id="app" class="max-w-7xl w-full">
-    <header class="text-center mb-12">
-      <div
-        class="bg-linear-to-br from-indigo-500 to-indigo-600 w-15 h-15 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-indigo-500/40">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-          class="lucide lucide-calculator w-8 h-8 text-white" aria-hidden="true">
-          <rect width="16" height="20" x="4" y="2" rx="2"></rect>
-          <line x1="8" x2="16" y1="6" y2="6"></line>
-          <line x1="16" x2="16" y1="14" y2="18"></line>
-          <path d="M16 10h.01"></path>
-          <path d="M12 10h.01"></path>
-          <path d="M8 10h.01"></path>
-          <path d="M12 14h.01"></path>
-          <path d="M8 14h.01"></path>
-          <path d="M12 18h.01"></path>
-          <path d="M8 18h.01"></path>
-        </svg>
-      </div>
-      <h1 class="text-3xl font-bold mb-2.5 text-slate-800">Bài Tập Toán</h1>
-      <p class="text-slate-500 text-base">Thử thách khả năng tính toán của bạn với 12 phép cộng ngẫu nhiên.</p>
-    </header>
-
-    <main>
-      <div id="questions" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-15"></div>
-
-      <div class="flex justify-center">
-        <!-- nút làm lại các phép tính sai -->
-        <div class="flex flex-col sm:flex-row gap-4">
-
-          <button id="clear-wrong-btn"
-            class="hidden bg-white text-slate-900 border border-slate-200 rounded-2xl px-8 py-4 text-lg font-semibold cursor-pointer flex items-center justify-center gap-3 shadow-sm transition-all hover:bg-slate-50 hover:scale-105 active:scale-95">
-            Làm lại câu sai
-            <svg class="w-5 h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-              stroke-width="2.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-            </svg>
-          </button>
-
-          <button id="complete-btn"
-            class="bg-slate-900 text-white border-none rounded-2xl px-8 py-4 text-lg font-semibold cursor-pointer flex items-center justify-center gap-3 shadow-xl shadow-slate-900/30 transition-all hover:bg-slate-800 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
-            Hoàn thành
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </button>
-
-
-          <button id="new-game-btn"
-            class="bg-white text-indigo-600 border border-indigo-100 rounded-2xl px-8 py-4 text-lg font-semibold cursor-pointer flex items-center justify-center gap-3 shadow-sm transition-all hover:bg-indigo-50 hover:scale-105 active:scale-95">
-            Bài mới
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <div id="result" class="mt-8 text-center text-2xl font-bold"></div>
-    </main>
-  </div>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toán Lớp 3 - Bé Tự Học</title>
+    <meta name="description" content="Ứng dụng học toán lớp 3 với giao diện sinh động, giúp bé rèn luyện kỹ năng tính toán thông qua các bài tập ngẫu nhiên." />
+    <script type="module" crossorigin src="/assets/index-BZOXQgL4.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C-iJHcU0.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
