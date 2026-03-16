@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #3b82f6;
+  --color-brand-indigo: #6366f1;
+  --color-bg-light: #f0f7ff;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --font-baloo: "Baloo 2", cursive;
+  --font-inter: "Inter", sans-serif;
+  --animate-bounce-slow: bounce-slow 4s infinite;
+  
+  @keyframes bounce-slow {
+    0%, 100% { transform: translateY(-5%) rotate(-2deg); }
+    50% { transform: translateY(5%) rotate(2deg); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bg-light text-slate-900 font-inter antialiased overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-xl shadow-blue-500/5 rounded-2xl;
+  }
+  
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-bold text-slate-500 hover:bg-blue-50 hover:text-blue-600;
+  }
+  
+  .sidebar-link-active {
+    @apply bg-blue-50 text-blue-600 border border-blue-100;
+  }
+
+  .course-card {
+    @apply bg-white rounded-3xl p-6 shadow-lg shadow-slate-200/50 border border-slate-100 transition-transform hover:scale-[1.02] cursor-pointer;
+  }
+
+  .progress-bar-bg {
+    @apply w-full h-2 bg-slate-100 rounded-full overflow-hidden;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-blue-500 rounded-full transition-all duration-500;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+}
