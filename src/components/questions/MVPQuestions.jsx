@@ -42,38 +42,33 @@ export function ClockReadQ({ question, onSubmit, submitted, feedback }) {
   return (
     <div className="flex flex-col items-center gap-8 py-6">
       <div className="relative w-72 h-72 rounded-full border-[10px] border-slate-800 bg-white shadow-2xl flex items-center justify-center">
-        {/* Marks */}
-        {[...Array(12)].map((_, i) => (
-          <div 
-            key={i} 
-            className="absolute inset-0 p-3" 
-            style={{ transform: `rotate(${i * 30}deg)` }}
-          >
-            <div className={`mx-auto rounded-full ${i % 3 === 0 ? 'w-1.5 h-5 bg-slate-400' : 'w-1 h-3 bg-slate-200'}`}></div>
+        {/* Minute Marks (60 dots) */}
+        {[...Array(60)].map((_, i) => (
+          <div key={i} className="absolute inset-0 p-2" style={{ transform: `rotate(${i * 6}deg)` }}>
+            <div className={`mx-auto rounded-full ${i % 5 === 0 ? 'w-1 h-3 bg-slate-400' : 'w-0.5 h-1 bg-slate-200'}`}></div>
           </div>
         ))}
 
         {/* Hour Hand */}
         <div 
-          className="absolute bottom-1/2 left-1/2 w-2.5 bg-slate-800 rounded-full origin-bottom -translate-x-1/2" 
+          className="absolute bottom-1/2 left-1/2 w-2.5 bg-slate-800 rounded-full origin-bottom z-10" 
           style={{ 
-            height: '25%',
+            height: '28%',
             transform: `translateX(-50%) rotate(${question.h * 30 + question.m * 0.5}deg)` 
           }}
         ></div>
 
         {/* Minute Hand */}
         <div 
-          className="absolute bottom-1/2 left-1/2 w-1.5 bg-blue-500 rounded-full origin-bottom -translate-x-1/2" 
+          className="absolute bottom-1/2 left-1/2 w-1.5 bg-blue-500 rounded-full origin-bottom z-10" 
           style={{ 
-            height: '38%',
+            height: '40%',
             transform: `translateX(-50%) rotate(${question.m * 6}deg)` 
           }}
         ></div>
 
         {/* Center Pin */}
-        <div className="absolute w-5 h-5 bg-slate-800 rounded-full shadow-md z-10"></div>
-        <div className="absolute w-2 h-2 bg-slate-400 rounded-full z-20"></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-slate-800 rounded-full z-20 shadow-md border-2 border-slate-700"></div>
       </div>
 
       <p className="text-2xl font-black text-slate-600">{question.text}</p>

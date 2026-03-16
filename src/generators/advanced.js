@@ -238,7 +238,7 @@ export function makeShapes() {
 // 10. Draw Clock (Vẽ kim đồng hồ) - Answer is the target time
 export function makeDrawClock() {
   const h = rand(1, 12);
-  const m = pick([0, 15, 30, 45]);
+  const m = randInt(0, 59);
   
   return {
     text: `Hãy xoay kim đồng hồ để chỉ ${h} giờ ${m === 0 ? 'đúng' : m + ' phút'}:`,

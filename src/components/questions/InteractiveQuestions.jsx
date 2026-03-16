@@ -87,10 +87,10 @@ export function DrawClockQ({ question, onSubmit, submitted, feedback }) {
       <div className="text-3xl font-black text-slate-800 mb-4">{question.text}</div>
       
       <div className="relative w-72 h-72 rounded-full border-[10px] border-slate-800 bg-white shadow-2xl flex items-center justify-center">
-        {/* Marks */}
-        {[...Array(12)].map((_, i) => (
-          <div key={i} className="absolute inset-0 p-3" style={{ transform: `rotate(${i * 30}deg)` }}>
-            <div className={`mx-auto rounded-full ${i % 3 === 0 ? 'w-1.5 h-5 bg-slate-400' : 'w-1 h-3 bg-slate-200'}`}></div>
+        {/* Minute Marks (60 dots) */}
+        {[...Array(60)].map((_, i) => (
+          <div key={i} className="absolute inset-0 p-2" style={{ transform: `rotate(${i * 6}deg)` }}>
+            <div className={`mx-auto rounded-full ${i % 5 === 0 ? 'w-1 h-3 bg-slate-400' : 'w-0.5 h-1 bg-slate-200'}`}></div>
           </div>
         ))}
 
@@ -105,15 +105,16 @@ export function DrawClockQ({ question, onSubmit, submitted, feedback }) {
         <div 
           className="absolute bottom-1/2 left-1/2 w-1.5 bg-blue-500 rounded-full origin-bottom cursor-pointer z-10" 
           style={{ height: '40%', transform: `translateX(-50%) rotate(${m * 6}deg)` }}
-          onClick={() => !submitted && setM((m + 15) % 60)}
+          onClick={() => !submitted && setM((m + 1) % 60)}
         ></div>
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-slate-800 rounded-full z-20 shadow-md border-2 border-slate-700"></div>
       </div>
 
-      <div className="flex gap-4">
-        <button onClick={() => !submitted && setH((h % 12) + 1)} disabled={submitted} className="px-6 py-2 bg-slate-100 rounded-xl font-bold">Xoay Kim Giờ</button>
-        <button onClick={() => !submitted && setM((m + 15) % 60)} disabled={submitted} className="px-6 py-2 bg-slate-100 rounded-xl font-bold">Xoay Kim Phút</button>
+      <div className="flex flex-wrap justify-center gap-3">
+        <button onClick={() => !submitted && setH((h % 12) + 1)} disabled={submitted} className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-2xl font-black text-slate-700 transition-all">+1 Giờ</button>
+        <button onClick={() => !submitted && setM((m + 5) % 60)} disabled={submitted} className="px-5 py-2.5 bg-blue-50 hover:bg-blue-100 rounded-2xl font-black text-blue-600 transition-all">+5 Phút</button>
+        <button onClick={() => !submitted && setM((m + 1) % 60)} disabled={submitted} className="px-5 py-2.5 bg-blue-500 hover:bg-blue-600 rounded-2xl font-black text-white transition-all shadow-lg shadow-blue-200">+1 Phút</button>
       </div>
 
       <SubmitBar 
