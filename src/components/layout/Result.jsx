@@ -44,34 +44,34 @@ export function Result() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-5xl font-black text-slate-800 mb-2">Hoàn thành!</h1>
-          <p className="text-xl font-bold text-slate-400 uppercase tracking-widest">Kết quả bài học của bé</p>
+          <h1 className="text-3xl md:text-5xl font-black text-slate-800 mb-2 whitespace-nowrap">Hoàn thành!</h1>
+          <p className="text-sm md:text-xl font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">Kết quả bài học của bé</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 w-full">
-          <div className="bg-blue-50 p-6 rounded-[2rem] flex flex-col items-center border-2 border-blue-100">
-            <span className="text-sm font-black text-blue-400 uppercase">Chính xác</span>
-            <span className="text-4xl font-black text-blue-600">{formatNumber(score)} / {formatNumber(total)}</span>
+        <div className="grid grid-cols-2 gap-3 md:gap-6 w-full">
+          <div className="bg-blue-50 p-4 md:p-6 rounded-[2rem] flex flex-col items-center border-2 border-blue-100 min-w-0">
+            <span className="text-xs md:text-sm font-black text-blue-400 uppercase tracking-wide">Chính xác</span>
+            <span className="text-2xl md:text-4xl font-black text-blue-600 whitespace-nowrap">{formatNumber(score)} / {formatNumber(total)}</span>
           </div>
-          <div className="bg-indigo-50 p-6 rounded-[2rem] flex flex-col items-center border-2 border-indigo-100">
-            <span className="text-sm font-black text-indigo-400 uppercase">Tỷ lệ</span>
-            <span className="text-4xl font-black text-indigo-600">{percentage}%</span>
+          <div className="bg-indigo-50 p-4 md:p-6 rounded-[2rem] flex flex-col items-center border-2 border-indigo-100 min-w-0">
+            <span className="text-xs md:text-sm font-black text-indigo-400 uppercase tracking-wide">Tỷ lệ</span>
+            <span className="text-2xl md:text-4xl font-black text-indigo-600 whitespace-nowrap">{percentage}%</span>
           </div>
         </div>
 
-        <div className="w-full flex flex-col gap-4 mt-4">
+        <div className="w-full flex flex-col gap-3 md:gap-4 mt-4">
           <button 
             onClick={() => setMode('menu')}
-            className="w-full py-5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-2xl font-black text-xl shadow-xl shadow-blue-500/20 flex items-center justify-center gap-3 transform active:scale-95 transition-all"
+            className="w-full py-4 md:py-5 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-2xl font-black text-base md:text-xl shadow-xl shadow-blue-500/20 flex items-center justify-center gap-2 md:gap-3 transform active:scale-95 transition-all"
           >
-            <Home size={24} /> Quay về Trang chủ
+            <Home size={20} className="shrink-0" /> Quay về Trang chủ
           </button>
           
           <button 
-            onClick={() => setMode('menu')} // Simple routing for now, in real case would re-trigger startQuiz
-            className="w-full py-5 bg-white border-4 border-slate-100 text-slate-600 rounded-2xl font-black text-xl flex items-center justify-center gap-3 hover:bg-slate-50 transform active:scale-95 transition-all"
+            onClick={() => setMode('menu')}
+            className="w-full py-4 md:py-5 bg-white border-4 border-slate-100 text-slate-600 rounded-2xl font-black text-base md:text-xl flex items-center justify-center gap-2 md:gap-3 hover:bg-slate-50 transform active:scale-95 transition-all"
           >
-            <RefreshCcw size={24} /> Làm lại bài này
+            <RefreshCcw size={20} className="shrink-0" /> Làm lại bài này
           </button>
         </div>
       </div>
