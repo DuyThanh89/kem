@@ -58,46 +58,46 @@ const SessionModal = ({ isOpen, onClose, session }) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-2xl transform overflow-hidden rounded-[2.5rem] bg-white p-10 shadow-2xl transition-all border-4 border-blue-50">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="flex gap-4 items-center">
-                    <div className="w-14 h-14 bg-blue-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
-                      <HistoryIcon size={28} />
+              <DialogPanel className="w-[95%] max-w-2xl transform overflow-hidden rounded-[2.5rem] bg-white p-6 md:p-10 shadow-2xl transition-all border-4 border-blue-50">
+                <div className="flex justify-between items-start mb-6 md:mb-8">
+                  <div className="flex gap-3 md:gap-4 items-center">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-blue-200 shrink-0">
+                      <HistoryIcon size={24} className="md:w-7 md:h-7" />
                     </div>
                     <div>
-                      <DialogTitle className="text-2xl font-black text-slate-800">
+                      <DialogTitle className="text-xl md:text-2xl font-black text-slate-800 leading-tight">
                         {TYPE_LABELS[session.type] || session.type}
                       </DialogTitle>
-                      <p className="text-slate-400 font-bold">{new Date(session.timestamp).toLocaleString('vi-VN')}</p>
+                      <p className="text-slate-400 font-bold text-sm md:text-base">{new Date(session.timestamp).toLocaleString('vi-VN')}</p>
                     </div>
                   </div>
-                  <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-xl transition-colors text-slate-400">
+                  <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-xl transition-colors text-slate-400 shrink-0">
                     <X size={24} strokeWidth={3} />
                   </button>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-8">
-                  <div className="bg-slate-50 p-6 rounded-3xl text-center border-2 border-slate-100">
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Điểm số</span>
-                    <span className="text-3xl font-black text-slate-700">{session.score} / {session.total}</span>
+                <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+                  <div className="bg-slate-50 p-4 md:p-6 rounded-[2rem] text-center border-2 border-slate-100">
+                    <span className="text-[9px] md:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">Điểm số</span>
+                    <span className="text-2xl md:text-3xl font-black text-slate-700">{session.score} / {session.total}</span>
                   </div>
-                  <div className="bg-blue-50 p-6 rounded-3xl text-center border-2 border-blue-100">
-                    <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest block mb-1">Chính xác</span>
-                    <span className="text-3xl font-black text-blue-600">{Math.round((session.score / session.total) * 100)}%</span>
+                  <div className="bg-blue-50 p-4 md:p-6 rounded-[2rem] text-center border-2 border-blue-100">
+                    <span className="text-[9px] md:text-[10px] font-black text-blue-400 uppercase tracking-widest block mb-1">Chính xác</span>
+                    <span className="text-2xl md:text-3xl font-black text-blue-600">{Math.round((session.score / session.total) * 100)}%</span>
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-3">
-                  <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest px-2">Chi tiết từng câu</h4>
-                  <div className="grid gap-3 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
+                  <h4 className="text-xs md:text-sm font-black text-slate-400 uppercase tracking-widest px-2">Chi tiết từng câu</h4>
+                  <div className="grid gap-3 max-h-[60vh] md:max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
                     {session.answers.map((ans, idx) => (
                       <div key={idx} className={`flex flex-col p-4 rounded-2xl border-2 ${ans.isCorrect ? 'bg-green-50 border-green-100' : 'bg-rose-50 border-rose-100'}`}>
-                        <div className="flex items-center justify-between mb-2">
-                          <div className="flex items-center gap-3">
-                            {ans.isCorrect ? <CheckCircle size={20} className="text-green-500" /> : <XCircle size={20} className="text-rose-500" />}
-                            <span className="font-bold text-slate-700 underline decoration-slate-200 underline-offset-4">Câu {idx + 1}</span>
+                        <div className="flex items-center justify-between mb-3">
+                          <div className="flex items-center gap-2 md:gap-3">
+                            {ans.isCorrect ? <CheckCircle size={18} className="text-green-500" /> : <XCircle size={18} className="text-rose-500" />}
+                            <span className="font-bold text-slate-700 underline decoration-slate-200 underline-offset-4 text-sm md:text-base">Câu {idx + 1}</span>
                           </div>
-                          <div className="flex items-center gap-4 text-xs font-black uppercase tracking-tighter">
+                          <div className="flex items-center gap-4 text-[10px] md:text-xs font-black uppercase tracking-tighter">
                              <span className={ans.isCorrect ? 'text-green-600' : 'text-rose-600'}>
                                 {ans.isCorrect ? 'Chính xác' : 'Chưa đúng'}
                              </span>
@@ -105,30 +105,30 @@ const SessionModal = ({ isOpen, onClose, session }) => {
                         </div>
 
                         <div className="bg-white/50 rounded-xl p-3 mb-3 border border-slate-100/50">
-                          <p className="text-slate-600 font-bold leading-relaxed">
+                          <p className="text-slate-600 font-bold leading-relaxed text-sm md:text-base">
                             {ans.questionText || (ans.type === 'arithmetic' ? `${formatNumber(ans.a)} ${ans.op} ${formatNumber(ans.b)} = ?` : 'Câu hỏi đã cũ')}
                           </p>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className={`grid ${!ans.isCorrect ? 'grid-cols-2' : 'grid-cols-1'} gap-3 md:gap-4`}>
                           <div className="bg-white/40 p-3 rounded-xl border border-white/60">
-                            <span className="text-[10px] text-slate-400 uppercase font-black block mb-1">Bé chọn</span>
-                            <span className={`text-lg font-black ${ans.isCorrect ? 'text-green-600' : 'text-rose-600'}`}>
+                            <span className="text-[9px] md:text-[10px] text-slate-400 uppercase font-black block mb-1">Bé chọn</span>
+                            <span className={`text-base md:text-lg font-black ${ans.isCorrect ? 'text-green-600' : 'text-rose-600'} break-words`}>
                               {Array.isArray(ans.input) 
                                 ? ans.input.map(n => formatNumber(n)).join(', ') 
                                 : (typeof ans.input === 'object' && ans.input !== null
-                                    ? `${ans.input.h}:${ans.input.m}` 
+                                    ? `${ans.input.h}:${String(ans.input.m).padStart(2, '0')}` 
                                     : formatNumber(ans.input))}
                             </span>
                           </div>
                           {!ans.isCorrect && (
                             <div className="bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
-                              <span className="text-[10px] text-blue-400 uppercase font-black block mb-1">Đáp án đúng</span>
-                              <span className="text-lg font-black text-blue-600">
+                              <span className="text-[9px] md:text-[10px] text-blue-400 uppercase font-black block mb-1">Đáp án đúng</span>
+                              <span className="text-base md:text-lg font-black text-blue-600 break-words">
                                 {Array.isArray(ans.correct) 
                                   ? ans.correct.map(n => formatNumber(n)).join(', ') 
                                   : (typeof ans.correct === 'object' && ans.correct !== null
-                                      ? `${ans.correct.h}:${ans.correct.m}` 
+                                      ? `${ans.correct.h}:${String(ans.correct.m).padStart(2, '0')}` 
                                       : formatNumber(ans.correct))}
                               </span>
                             </div>
@@ -306,35 +306,35 @@ export function HistoryView() {
           {filteredHistory.map((session) => (
             <div 
               key={session.id} 
-              className="glass-card p-6 flex items-center justify-between hover:shadow-2xl hover:shadow-blue-500/5 transition-all cursor-pointer group"
+              className="glass-card p-4 md:p-6 flex items-center justify-between hover:shadow-2xl hover:shadow-blue-500/5 transition-all cursor-pointer group"
               onClick={() => setExpandedId(session.id)}
             >
-              <div className="flex items-center gap-6">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-colors">
-                  <Calendar size={32} />
+              <div className="flex items-center gap-3 md:gap-6">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-colors shrink-0">
+                  <HistoryIcon size={24} className="md:w-8 md:h-8" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-black text-slate-800 capitalize">
+                  <h3 className="text-lg md:text-xl font-black text-slate-800 capitalize leading-tight">
                     {TYPE_LABELS[session.type] || session.type}
                   </h3>
-                  <div className="flex items-center gap-4 text-slate-400 font-bold text-sm">
+                  <div className="flex items-center gap-4 text-slate-400 font-bold text-xs md:text-sm">
                     <span className="flex items-center gap-1">
-                       <Clock size={14} /> {new Date(session.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                       <Clock size={12} className="md:w-3.5 md:h-3.5" /> {new Date(session.timestamp).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-10">
-                <div className="flex flex-col items-end">
-                  <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">Kết quả</span>
-                  <div className="flex items-center gap-2">
-                    <Trophy size={20} className="text-yellow-500" />
-                    <span className="text-2xl font-black text-slate-700">{formatNumber(session.score)} / {formatNumber(session.total)}</span>
+              <div className="flex items-center gap-4 md:gap-10">
+                <div className="flex flex-col items-end shrink-0">
+                  <span className="text-[8px] md:text-[10px] font-black text-slate-300 uppercase tracking-widest">Kết quả</span>
+                  <div className="flex items-center gap-1.5 md:gap-2">
+                    <Trophy size={16} className="text-yellow-500 md:w-5 md:h-5" />
+                    <span className="text-xl md:text-2xl font-black text-slate-700">{formatNumber(session.score)}/{formatNumber(session.total)}</span>
                   </div>
                 </div>
                 
-                <div className="w-24 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-black text-center border border-blue-100 group-hover:bg-blue-500 group-hover:text-white transition-all">
+                <div className="hidden sm:block w-24 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-black text-center border border-blue-100 group-hover:bg-blue-500 group-hover:text-white transition-all">
                   Chi tiết
                 </div>
               </div>

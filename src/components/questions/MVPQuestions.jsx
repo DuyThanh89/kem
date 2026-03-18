@@ -145,11 +145,11 @@ export function WordProblemQ({ question, onSubmit, submitted, feedback }) {
              valRes === q.result;
     });
 
-    if (isAllCorrect) {
-      onSubmit(question.answer);
-    } else {
-      onSubmit(NaN);
-    }
+    const finalInput = Number(steps[steps.length - 1].res);
+    onSubmit({
+      isCorrect: isAllCorrect,
+      input: isAllCorrect ? question.answer : finalInput
+    });
   };
 
   return (

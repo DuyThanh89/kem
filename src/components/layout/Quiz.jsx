@@ -54,9 +54,13 @@ export function Quiz() {
   const handleLevelSubmit = (userAnswer) => {
     let isCorrect = false;
     
-    if (quizType === 'clock' || quizType === 'drawClock' || quizType === 'duration') {
+    // Check if component already calculated correctness (e.g., WordProblemQ)
+    if (userAnswer && typeof userAnswer === 'object' && 'isCorrect' in userAnswer) {
+      isCorrect = userAnswer.isCorrect;
+      userAnswer = userAnswer.input; // Extract the actual answer for display
+    } else if (quizType === 'clock' || quizType === 'drawClock' || quizType === 'duration') {
       if (typeof question.answer === 'object') {
-        isCorrect = userAnswer.h === question.answer.h && userAnswer.m === question.answer.m;
+        isCorrect = userAnswer?.h === question.answer?.h && userAnswer?.m === question.answer?.m;
       } else {
         isCorrect = userAnswer === question.answer;
       }
@@ -71,6 +75,16 @@ export function Quiz() {
       const leftStr = typeof question.left === 'string' ? question.left.replace(/\d+/g, m => formatNumber(m)) : formatNumber(question.left);
       const rightStr = typeof question.right === 'string' ? question.right.replace(/\d+/g, m => formatNumber(m)) : formatNumber(question.right);
       questionText = `${leftStr} ... ${rightStr}`;
+    } else if (quizType === 'fillBlank') {
+      questionText = (question.equation || '').replace(/\d+/g, m => formatNumber(m));
+    } else if (quizType === 'sorting') {
+      questionText = `${question.text} [${(question.options || []).map(n => formatNumber(n)).join(', ')}]`;
+    } else if (quizType === 'pattern') {
+      questionText = `${question.text} [${(question.sequence || []).map(n => formatNumber(n)).join(', ')}, ?]`;
+    } else if (quizType === 'clock') {
+      questionText = "Đồng hồ chỉ mấy giờ mấy phút?";
+    } else if (quizType === 'drawClock') {
+      questionText = question.text;
     }
 
     submitAnswer(isCorrect, {
@@ -80,7 +94,9 @@ export function Quiz() {
       isCorrect,
       questionText,
       equation: question.equation,
-      type: quizType
+      type: quizType,
+      options: question.options,
+      sequence: question.sequence,
     });
   };
 
