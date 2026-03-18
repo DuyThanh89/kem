@@ -21,6 +21,7 @@ const TYPE_LABELS = {
   sorting: 'Sắp xếp dãy số',
   pattern: 'Quy luật dãy số',
   perimeter: 'Chu vi hình học',
+  area: 'Diện tích hình học',
   shapes: 'Nhận biết hình',
   drawClock: 'Vẽ kim đồng hồ',
   calendar: 'Lịch & Ngày tháng',
@@ -113,14 +114,22 @@ const SessionModal = ({ isOpen, onClose, session }) => {
                           <div className="bg-white/40 p-3 rounded-xl border border-white/60">
                             <span className="text-[10px] text-slate-400 uppercase font-black block mb-1">Bé chọn</span>
                             <span className={`text-lg font-black ${ans.isCorrect ? 'text-green-600' : 'text-rose-600'}`}>
-                              {typeof ans.input === 'object' ? `${ans.input.h}:${ans.input.m}` : (Array.isArray(ans.input) ? ans.input.join(', ') : formatNumber(ans.input))}
+                              {Array.isArray(ans.input) 
+                                ? ans.input.map(n => formatNumber(n)).join(', ') 
+                                : (typeof ans.input === 'object' && ans.input !== null
+                                    ? `${ans.input.h}:${ans.input.m}` 
+                                    : formatNumber(ans.input))}
                             </span>
                           </div>
                           {!ans.isCorrect && (
                             <div className="bg-blue-50/50 p-3 rounded-xl border border-blue-100/50">
                               <span className="text-[10px] text-blue-400 uppercase font-black block mb-1">Đáp án đúng</span>
                               <span className="text-lg font-black text-blue-600">
-                                {typeof ans.correct === 'object' ? `${ans.correct.h}:${ans.correct.m}` : (Array.isArray(ans.correct) ? ans.correct.join(', ') : formatNumber(ans.correct))}
+                                {Array.isArray(ans.correct) 
+                                  ? ans.correct.map(n => formatNumber(n)).join(', ') 
+                                  : (typeof ans.correct === 'object' && ans.correct !== null
+                                      ? `${ans.correct.h}:${ans.correct.m}` 
+                                      : formatNumber(ans.correct))}
                               </span>
                             </div>
                           )}

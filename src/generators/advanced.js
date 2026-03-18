@@ -24,20 +24,32 @@ export function makeMeasurement() {
 // 2. Money (Tiền tệ)
 export function makeMoney() {
   const items = [
-    { name: 'quyển vở', price: 5000 },
-    { name: 'cái bút', price: 3000 },
-    { name: 'thước kẻ', price: 2000 },
-    { name: 'cục tẩy', price: 1000 },
+    { name: 'quyển vở', price: 5000, unit: 'quyển' },
+    { name: 'cái bút', price: 3000, unit: 'cái' },
+    { name: 'thước kẻ', price: 2000, unit: 'cái' },
+    { name: 'cục tẩy', price: 1000, unit: 'cái' },
   ];
   
   const item1 = pick(items);
-  const item2 = pick(items);
-  const total = item1.price + item2.price;
+  const others = items.filter(i => i.name !== item1.name);
+  const item2 = pick(others);
+  
+  const q1 = rand(2, 5);
+  const q2 = rand(2, 4);
+  
+  const cost1 = item1.price * q1;
+  const cost2 = item2.price * q2;
+  const total = cost1 + cost2;
   
   return {
-    text: `Bé mua một ${item1.name} (${item1.price}đ) và một ${item2.name} (${item2.price}đ). Bé phải trả bao nhiêu tiền?`,
+    type: "word",
+    text: `Bé mua ${q1} ${item1.name} (giá ${item1.price}đ/${item1.unit}) và ${q2} ${item2.name} (giá ${item2.price}đ/${item2.unit}). Bé phải trả bao nhiêu tiền?`,
     answer: total,
-    hint: "Hãy cộng số tiền của hai món đồ lại nhé!"
+    steps: [
+      { label: `Tiền mua ${item1.name} là:`, a: item1.price, op: '×', b: q1, result: cost1 },
+      { label: `Tiền mua ${item2.name} là:`, a: item2.price, op: '×', b: q2, result: cost2 },
+      { label: "Bé phải trả số tiền là:", a: cost1, op: '+', b: cost2, result: total }
+    ]
   };
 }
 
@@ -128,7 +140,94 @@ export function makePerimeter() {
     };
   }
 }
-// 6. Rounding (Làm tròn)
+// 6. Area (Diện tích)
+export function makeArea() {
+  const mode = rand(0, 2); // 0: Square, 1: Rectangle, 2: 2-step Word Problem
+  
+  if (mode === 0) {
+    const a = rand(2, 10);
+    return {
+      text: `Tính diện tích hình vuông có cạnh dài ${a}cm:`,
+      answer: a * a,
+      hint: "Diện tích hình vuông = Cạnh × Cạnh"
+    };
+  } else if (mode === 1) {
+    const a = rand(5, 12);
+    const b = rand(2, 4);
+    return {
+      text: `Tính diện tích hình chữ nhật có chiều dài ${a}cm và chiều rộng ${b}cm:`,
+      answer: a * b,
+      hint: "Diện tích hình chữ nhật = Dài × Rộng"
+    };
+  } else {
+    // Multi-step Word Problem (2 steps)
+    const scenario = rand(0, 3);
+    
+    if (scenario === 0) {
+      const w = rand(4, 10);
+      const multiplier = rand(2, 3);
+      const l = w * multiplier;
+      const area = l * w;
+      
+      return {
+        type: "word",
+        text: `Một hình chữ nhật có chiều rộng là ${w}cm. Chiều dài gấp ${multiplier} lần chiều rộng. Tính diện tích hình chữ nhật đó.`,
+        answer: area,
+        steps: [
+          { label: "Chiều dài hình chữ nhật là:", a: w, op: '×', b: multiplier, result: l },
+          { label: "Diện tích hình chữ nhật là:", a: l, op: '×', b: w, result: area }
+        ]
+      };
+    } else if (scenario === 1) {
+      const divisor = pick([2, 3]);
+      const w = rand(4, 10);
+      const l = w * divisor;
+      const area = l * w;
+
+      return {
+        type: "word",
+        text: `Một hình chữ nhật có chiều dài là ${l}cm. Chiều rộng bằng 1/${divisor} chiều dài. Tính diện tích hình chữ nhật đó.`,
+        answer: area,
+        steps: [
+          { label: "Chiều rộng hình chữ nhật là:", a: l, op: '÷', b: divisor, result: w },
+          { label: "Diện tích hình chữ nhật là:", a: l, op: '×', b: w, result: area }
+        ]
+      };
+    } else if (scenario === 2) {
+      const w = rand(5, 15);
+      const diff = rand(2, 10);
+      const l = w + diff;
+      const area = l * w;
+      
+      return {
+        type: "word",
+        text: `Một hình chữ nhật có chiều rộng là ${w}cm. Chiều dài hơn chiều rộng ${diff}cm. Tính diện tích hình chữ nhật đó.`,
+        answer: area,
+        steps: [
+          { label: "Chiều dài hình chữ nhật là:", a: w, op: '+', b: diff, result: l },
+          { label: "Diện tích hình chữ nhật là:", a: l, op: '×', b: w, result: area }
+        ]
+      };
+    } else {
+      const l = rand(10, 25);
+      const diff = rand(2, 5);
+      const w = l - diff;
+      const area = l * w;
+      
+      return {
+        type: "word",
+        text: `Một hình chữ nhật có chiều dài là ${l}cm. Chiều rộng kém chiều dài ${diff}cm. Tính diện tích hình chữ nhật đó.`,
+        answer: area,
+        steps: [
+          { label: "Chiều rộng hình chữ nhật là:", a: l, op: '-', b: diff, result: w },
+          { label: "Diện tích hình chữ nhật là:", a: l, op: '×', b: w, result: area }
+        ]
+      };
+    }
+  }
+}
+
+// 7. Rounding (Làm tròn)
 export function makeRounding() {
   const type = pick(['chục', 'trăm', 'nghìn']);
   let val, answer;
@@ -238,7 +337,7 @@ export function makeShapes() {
 // 10. Draw Clock (Vẽ kim đồng hồ) - Answer is the target time
 export function makeDrawClock() {
   const h = rand(1, 12);
-  const m = randInt(0, 59);
+  const m = rand(0, 59);
   
   return {
     text: `Hãy xoay kim đồng hồ để chỉ ${h} giờ ${m === 0 ? 'đúng' : m + ' phút'}:`,

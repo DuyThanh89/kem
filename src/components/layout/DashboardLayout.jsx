@@ -30,7 +30,7 @@ export function DashboardLayout({ children }) {
       <div className="flex-1 flex flex-col overflow-hidden w-full">
         <TopBar onMenuClick={() => setSidebarOpen(true)} />
         
-        <main className="flex-1 overflow-y-auto px-6 md:px-10 pb-10 relative">
+        <main className="flex-1 overflow-y-auto px-2 sm:px-4 md:px-10 pb-6 md:pb-10 relative">
           {children}
           
         </main>

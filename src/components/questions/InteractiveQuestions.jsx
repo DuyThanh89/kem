@@ -83,10 +83,10 @@ export function DrawClockQ({ question, onSubmit, submitted, feedback }) {
   const [m, setM] = useState(0);
 
   return (
-    <div className="flex flex-col items-center gap-8 py-6">
-      <div className="text-3xl font-black text-slate-800 mb-4">{question.text}</div>
+    <div className="flex flex-col items-center gap-6 py-4">
+      <div className="text-xl md:text-3xl font-black text-slate-800 mb-2">{question.text}</div>
       
-      <div className="relative w-72 h-72 rounded-full border-[10px] border-slate-800 bg-white shadow-2xl flex items-center justify-center">
+      <div className="relative w-56 h-56 md:w-72 md:h-72 rounded-full border-[10px] border-slate-800 bg-white shadow-2xl flex items-center justify-center">
         {/* Minute Marks (60 dots) */}
         {[...Array(60)].map((_, i) => (
           <div key={i} className="absolute inset-0 p-2" style={{ transform: `rotate(${i * 6}deg)` }}>
@@ -96,19 +96,19 @@ export function DrawClockQ({ question, onSubmit, submitted, feedback }) {
 
         {/* Hour Hand */}
         <div 
-          className="absolute bottom-1/2 left-1/2 w-2.5 bg-slate-800 rounded-full origin-bottom cursor-pointer z-10" 
+          className="absolute bottom-1/2 left-1/2 w-2 md:w-2.5 bg-slate-800 rounded-full origin-bottom cursor-pointer z-10" 
           style={{ height: '28%', transform: `translateX(-50%) rotate(${h * 30 + (m * 0.5)}deg)` }}
           onClick={() => !submitted && setH((h % 12) + 1)}
         ></div>
 
         {/* Minute Hand */}
         <div 
-          className="absolute bottom-1/2 left-1/2 w-1.5 bg-blue-500 rounded-full origin-bottom cursor-pointer z-10" 
+          className="absolute bottom-1/2 left-1/2 w-1 md:w-1.5 bg-blue-500 rounded-full origin-bottom cursor-pointer z-10" 
           style={{ height: '40%', transform: `translateX(-50%) rotate(${m * 6}deg)` }}
           onClick={() => !submitted && setM((m + 1) % 60)}
         ></div>
 
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-slate-800 rounded-full z-20 shadow-md border-2 border-slate-700"></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 md:w-6 md:h-6 bg-slate-800 rounded-full z-20 shadow-md border-2 border-slate-700"></div>
       </div>
 
       <div className="flex flex-wrap justify-center gap-3">

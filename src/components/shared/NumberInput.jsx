@@ -2,9 +2,9 @@ import { formatNumber } from '../../generators/utils';
 
 export function NumberInput({ value, onChange, disabled, autoFocus, placeholder = "?", size = "md", onKeyDown }) {
   const sizeClasses = {
-    sm: "w-28 text-xl py-2",
-    md: "w-48 text-3xl py-3",
-    lg: "w-80 text-5xl py-4",
+    sm: "w-16 md:w-24 text-lg md:text-xl py-1.5 md:py-2",
+    md: "w-24 md:w-36 text-xl md:text-3xl py-2 md:py-3",
+    lg: "w-36 md:w-64 text-3xl md:text-5xl py-2.5 md:py-3.5",
   };
 
   const handleChange = (e) => {

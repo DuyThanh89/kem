@@ -34,6 +34,7 @@ export function StandardAdvancedQ({ question, onSubmit, submitted, feedback }) {
             <NumberInput 
               value={h} 
               onChange={setH} 
+              onKeyDown={(e) => e.key === 'Enter' && h !== "" && m !== "" && onSubmit({ h: Number(h), m: Number(m) })}
               disabled={submitted} 
               autoFocus 
               size="md" 
@@ -46,6 +47,7 @@ export function StandardAdvancedQ({ question, onSubmit, submitted, feedback }) {
             <NumberInput 
               value={m} 
               onChange={setM} 
+              onKeyDown={(e) => e.key === 'Enter' && h !== "" && m !== "" && onSubmit({ h: Number(h), m: Number(m) })}
               disabled={submitted} 
               size="md" 
               placeholder="0"
@@ -107,7 +109,7 @@ export function SortingQ({ question, onSubmit, submitted, feedback }) {
           <button
             key={i}
             onClick={() => toggleNum(n)}
-            className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black shadow-lg transform transition-all active:scale-95 ${
+            className={`h-14 md:h-16 w-fit px-5 whitespace-nowrap rounded-2xl flex items-center justify-center text-lg md:text-xl font-black shadow-lg transform transition-all active:scale-95 ${
               submitted 
                 ? (feedback === 'correct' ? 'bg-green-500 text-white' : 'bg-rose-500 text-white')
                 : 'bg-blue-500 text-white'
@@ -118,12 +120,12 @@ export function SortingQ({ question, onSubmit, submitted, feedback }) {
         ))}
       </div>
 
-      <div className="flex flex-wrap gap-4 justify-center w-full">
+      <div className="flex flex-wrap gap-3 justify-center w-full">
         {pool.map((n, i) => (
           <button
             key={i}
             onClick={() => toggleNum(n)}
-            className="w-20 h-20 rounded-2xl bg-white border-4 border-slate-100 flex items-center justify-center text-3xl font-black text-slate-600 shadow-sm hover:border-blue-300 hover:shadow-md transform transition-all active:scale-95"
+            className="h-14 md:h-16 w-fit px-5 whitespace-nowrap rounded-2xl bg-white border-4 border-slate-100 flex items-center justify-center text-lg md:text-xl font-black text-slate-600 shadow-sm hover:border-blue-300 hover:shadow-md transform transition-all active:scale-95"
           >
             {formatNumber(n)}
           </button>

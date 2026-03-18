@@ -21,6 +21,7 @@ const LESSONS = [
   { id: 'sorting', title: 'Sắp xếp dãy số', subtitle: 'Thứ tự Tăng/Giảm', icon: SortAsc, bg: 'bg-cyan-500' },
   { id: 'pattern', title: 'Quy luật dãy số', subtitle: 'Tìm quy luật logic', icon: Workflow, bg: 'bg-indigo-500' },
   { id: 'perimeter', title: 'Chu vi hình học', subtitle: 'Hình vuông & Chữ nhật', icon: Square, bg: 'bg-teal-500' },
+  { id: 'area', title: 'Diện tích hình học', subtitle: 'Đơn vị cm2, m2', icon: Square, bg: 'bg-red-500' },
   { id: 'shapes', title: 'Nhận biết hình', subtitle: 'Đếm tam giác, tứ giác', icon: Shapes, bg: 'bg-violet-500' },
 
   // Giai đoạn 3 - Nâng cao

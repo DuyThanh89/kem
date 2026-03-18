@@ -7,7 +7,7 @@ import {
   makeMeasurement, makeMoney, makeSorting, 
   makePattern, makePerimeter, makeRounding,
   makeCalendar, makeDuration, makeShapes,
-  makeDrawClock
+  makeDrawClock, makeArea
 } from './advanced';
 
 const GENERATORS = {
@@ -26,6 +26,7 @@ const GENERATORS = {
   duration: makeDuration,
   shapes: makeShapes,
   drawClock: makeDrawClock,
+  area: makeArea,
 };
 
 export function generateQuiz(type, count = 10) {
